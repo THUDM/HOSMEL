@@ -30,7 +30,7 @@ def mention2id(men):
 
 @app.route("/relation/<string:bdi>")
 def getRelation(bdi):
-	data = {'data': bdi2relation.get(bdi,None)}
+	data = {'data': bdi2relation.get(bdi,[])}
 	return data
 
 app.run(port=8982,host="0.0.0.0")

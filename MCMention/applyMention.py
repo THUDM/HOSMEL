@@ -9,7 +9,7 @@ model = None
 tokenizer = None
 checkpoint_num = 1500
 # model_location = os.path.join(os.path.dirname(__file__),"model/macbert-linking-chinese-baidu-add-alias-v4-lr_1e-5-wd_1e-3-eligant_data4_20/checkpoint-%d"%(checkpoint_num))
-model_location = os.path.join(os.path.dirname(__file__),"model/macbert-pipel-mention-chinese/checkpoint-%d"%(checkpoint_num))
+model_location = os.path.join(os.path.dirname(__file__),"model/macbert-hosmel-mention-chinese/checkpoint-%d"%(checkpoint_num))
 
 print("Loading Mention Model")
 tokenizer = AutoTokenizer.from_pretrained(model_location,local_files_only=True,use_fast=True)

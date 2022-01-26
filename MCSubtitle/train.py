@@ -10,7 +10,7 @@ encoded_data = load_dataset("json",data_files={"train":'./processedData.json'},c
 encoded_data = encoded_data["train"]
 encoded_data = concatenate_datasets([encoded_data.shard(num_shards=20,index=i) for i in [16,17,18,19]])
 args = TrainingArguments(
-	output_dir="./model/tmp",
+	output_dir="./model/macbert-hosmel-subtitle-chinese",
 	learning_rate=1e-5,
 	per_device_train_batch_size=batch_size,
 	num_train_epochs=3,

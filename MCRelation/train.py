@@ -9,7 +9,7 @@ model = AutoModelForMultipleChoice.from_pretrained(model_name)
 encoded_data = load_dataset("json",data_files={"train":'./processedData.json'},cache_dir="../cache/")
 encoded_data = encoded_data["train"]
 args = TrainingArguments(
-	output_dir="./model/macbert-hosmel-mention-chinese",
+	output_dir="./model/macbert-hosmel-relation-chinese",
 	learning_rate=1e-5,
 	per_device_train_batch_size=batch_size,
 	num_train_epochs=3,

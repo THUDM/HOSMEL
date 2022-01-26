@@ -5,7 +5,7 @@ import torch
 device="cuda:0"
 checkpoint_n = 1500
 print("Loading Linking Model")
-model_location = os.path.join(os.path.dirname(__file__),"model/macbert-pipel-subtitle-chinese/checkpoint-%d"%(checkpoint_n))
+model_location = os.path.join(os.path.dirname(__file__),"model/macbert-hosmel-subtitle-chinese/checkpoint-%d"%(checkpoint_n))
 tokenizer = AutoTokenizer.from_pretrained(model_location,local_files_only=True,use_fast=True)
 model = AutoModelForMultipleChoice.from_pretrained(model_location,local_files_only=True).eval().to(device)
 print("Linking Model Loaded")
