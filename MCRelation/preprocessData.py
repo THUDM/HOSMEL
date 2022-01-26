@@ -3,7 +3,6 @@ import pickle
 from datasets import load_dataset
 batch_size = 32
 log_rate = 10
-# model_name = "uer/chinese_roberta_L-8_H-512"
 model_name = "hfl/chinese-macbert-large"
 tokenizer = AutoTokenizer.from_pretrained(model_name,use_fast=True)
 model = AutoModelForMultipleChoice.from_pretrained(model_name)
@@ -19,7 +18,6 @@ def preprocess(example):
 	second_sentences = sum(second_sentences,[])
 	tokenized = tokenizer(first_sentences,second_sentences,truncation=True,max_length=128)
 	tokenized = {k:[v[i:i+4] for i in range(0, len(v), 4)] for k,v in tokenized.items()}
-	# tokenized["label"] = example["Label"]
 	return tokenized
 
 def preprocess_no_batch(example):
