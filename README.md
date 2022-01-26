@@ -2,6 +2,12 @@
 
 ## Usage
 
+First,
+
+```bash
+git clone git@github.com:THUDM/HOSMEL.git
+```
+
 Our toolkit allows 3 different levels of usages
 
 ### Ready-to-Use
