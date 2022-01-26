@@ -38,7 +38,7 @@ Then reimplement the $generatePair$ method in the `apply{feature}.py` file for i
 
 ## <span id="ld">Live Demonstration</span>
 
-We provided a live demonstration at `http://60.205.221.159/el/`
+We provided a live demonstration at http://60.205.221.159/el/
 
 ## Links to the model Checkpoints
 
