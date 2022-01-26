@@ -34,7 +34,7 @@ To train your own module, we recommend to copy the relation module, ideally, for
 }
 ```
 
-Then reimplement the $generatePair$ method in the `apply{feature}.py` file for infer.
+Then reimplement the `generatePair` method in the `apply{feature}.py` file for infer.
 
 ## <span id="ld">Live Demonstration</span>
 
