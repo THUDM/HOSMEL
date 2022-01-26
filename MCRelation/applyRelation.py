@@ -5,13 +5,10 @@ import json
 from tqdm import tqdm
 import torch
 import os
-device="cuda:2"
+device="cuda:0"
 
 
-model = None
-tokenizer = None
-checkpoint_num = 500
-model_location = os.path.join(os.path.dirname(__file__),"model/macbert-hosmel-relation-chinese/checkpoint-%d"%(checkpoint_num))
+model_location = os.path.join(os.path.dirname(__file__),"model")
 print("Loading Relation Model")
 tokenizer = AutoTokenizer.from_pretrained(model_location,local_files_only=True,use_fast=True)
 model = AutoModelForMultipleChoice.from_pretrained(model_location,local_files_only=True).eval().to(device)
