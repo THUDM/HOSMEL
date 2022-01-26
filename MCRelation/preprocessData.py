@@ -7,7 +7,7 @@ model_name = "hfl/chinese-macbert-large"
 tokenizer = AutoTokenizer.from_pretrained(model_name,use_fast=True)
 model = AutoModelForMultipleChoice.from_pretrained(model_name)
 
-data = load_dataset("json",data_files={"train":'./data/extract_training.json'},cache_dir="../cache/")
+data = load_dataset("json",data_files={"train":'./relationData.json'},cache_dir="../cache/")
 data = data["train"]
 ending_names = ["target0","target1","target2","target3"]
 def preprocess(example):
