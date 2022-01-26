@@ -1,4 +1,4 @@
-# HOSMEL
+# **HOSMEL: A Hot Swappable Modulized Entity Linking Toolkit for Chinese**
 
 ## Usage
 
