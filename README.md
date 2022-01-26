@@ -6,7 +6,7 @@ Our toolkit allows 3 different levels of usages
 
 ### Ready-to-Use
 
-If you are not interested to change our default setup, follow the steps of [Mention Filtering](### Mention Filtering), [Mention Detection](Mention Detection), [Disambiguation By Subtitle](### Disambiguation By Subtitle), and [Disambiguation By Relation](Disambiguation By Relation). A [Live demonstration](#ld) using the same structure is also available.
+If you are not interested to change our default setup, follow the steps of [Mention Filtering](#mf), [Mention Detection](#md), [Disambiguation By Subtitle](#ds), and [Disambiguation By Relation](#dr). A [Live demonstration](#ld) using the same structure is also available.
 
 ### Partial
 
@@ -61,7 +61,7 @@ pip install flask torch tqdm pickle json pyahocorasick datasets
 
 Make sure you have all the dependencies installed to access all of our methods.
 
-### Mention Filtering
+### Mention Filtering <span id="mf"/>
 
 First Download [TriMention.zip](https://drive.google.com/file/d/12w12GH5XEVGKYoaWm_sXVFHGFOSFJHnu/view?usp=sharing) to the `TriMention` directory, then simply extract the zip packages. You should see your directory to look like,
 
@@ -80,7 +80,7 @@ The `TriMention` folder not only includes the basic Trie tree, it also comes wit
 python mention.py
 ```
 
-### Mention Detection
+### Mention Detection <span id="md"/>
 
 Download the [MD_checkpoint.zip](https://drive.google.com/file/d/1pMqN63yy9S9NZJWRV41bc-dASRndLwtr/view?usp=sharing) file and extract it to the `MCMention/model` folder. It should look like
 
@@ -97,7 +97,7 @@ MCMention/
 └── train.py
 ```
 
-### Disambiguation By Subtitle
+### Disambiguation By Subtitle <span id="ds"/>
 
 Download the [SD_checkpoint.zip](https://drive.google.com/file/d/1BZphOj8rS7qHZA3wWz0vcY3H_qbCjTGK/view?usp=sharing) to the `model` directory under `MCSubtitle`. Then unzip it. The final directory should look like
 
@@ -115,7 +115,7 @@ MCSubtitle/
 └── train.py
 ```
 
-### Disambiguation By Relation
+### Disambiguation By Relation <span id="dr"/>
 
 Download the [RD_checkpoint.zip](https://drive.google.com/file/d/1xKvPx0LY6XgVXY7wtSmUwk2iMfBm-9qw/view?usp=sharing) to `MCRelation/model/`, and unzip to get
 
