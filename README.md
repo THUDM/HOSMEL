@@ -171,7 +171,7 @@ The model's checkpoint should be saved in the `model` folder.
 
 ## Usage after training new Module
 
-Idealy, if you have selected your checkpoint and replaced the `model` folder with it, you don't need to change anything other than editing the `generatePairs` method. However, just in case, if you are interested to change model directory. In the `apply*.py` folder, change
+Idealy, if you have selected your checkpoint and replaced the `model` folder with it, you don't need to change anything other than editing the `generatePairs` method. However, just in case, if you are interested to change model directory. In the `applyNew.py` folder, change
 
 ```bash
 model_location = os.path.join(os.path.dirname(__file__),"model")
