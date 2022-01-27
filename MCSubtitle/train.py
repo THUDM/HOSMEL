@@ -1,6 +1,6 @@
 from transformers import AutoTokenizer, AutoModelForMultipleChoice, TrainingArguments, Trainer
 import pickle
-from datasets import load_dataset,concatenate_datasets
+from datasets import load_dataset
 batch_size = 16
 log_rate = 10
 model_name = "hfl/chinese-macbert-large"
@@ -8,9 +8,8 @@ tokenizer = AutoTokenizer.from_pretrained(model_name,use_fast=True)
 model = AutoModelForMultipleChoice.from_pretrained(model_name)
 encoded_data = load_dataset("json",data_files={"train":'./processedData.json'},cache_dir="../cache/")
 encoded_data = encoded_data["train"]
-encoded_data = concatenate_datasets([encoded_data.shard(num_shards=20,index=i) for i in [16,17,18,19]])
 args = TrainingArguments(
-	output_dir="./model/macbert-hosmel-subtitle-chinese",
+	output_dir="./model",
 	learning_rate=1e-5,
 	per_device_train_batch_size=batch_size,
 	num_train_epochs=3,

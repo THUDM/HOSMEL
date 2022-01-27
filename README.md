@@ -26,7 +26,7 @@ See [setups](#su) for more information.
 
 ### Easy-to-Change
 
-To train your own module, we recommend to copy the relation module, ideally, for training you only need to make sure your training data satisfies the form of
+To train your own module, we recommend to copy the `NewMudule` module, a template Module we created, ideally, for training you only need to make sure your training data satisfies the form of
 
 ```json
 {
@@ -145,5 +145,60 @@ To launch the complete HOSMEL, we provide a flask based backend, simply run it a
 
 ```bash
 python backend.py
+```
+
+## Data Release
+
+We release our training data [here](https://drive.google.com/file/d/17s6j2i93LDOyzCAGf82PNGKOHRIaoM2x/view?usp=sharing)
+
+Our test data is also available [here](https://drive.google.com/file/d/1A1ktpFtLGKGnZwFmVjsCWnVXzIPBDpMo/view?usp=sharing)
+
+## Training
+
+To train a new module, simply move the training data to corresponding folder and use
+
+```bash
+python preprocessData.py
+```
+
+Make sure you have the name right, for example the name for training data in the MCSubtitle filder is `subtitleData.json`. This should give a `processedData.json` file in the same directory. Then use 
+
+```bash
+python train.py
+```
+
+The model's checkpoint should be saved in the `model` folder.
+
+## Usage after training new Module
+
+Idealy, if you have selected your checkpoint and replaced the `model` folder with it, you don't need to change anything other than editing the `generatePairs` method. However, just in case, if you are interested to change model directory. In the `apply*.py` folder, change
+
+```bash
+model_location = os.path.join(os.path.dirname(__file__),"model")
+```
+
+into
+
+```bash
+model_location = "New checkpoint location"
+```
+
+Will do it.
+
+To use the new module for infer, it is required to reimplement the `generatePairs` method. The generate Pair method takes the input `entity`, aka, the output of the previous module, and retrieves a list of "mention|attribute value" pairs. A `bdi_list` variable, containing the same amount of items as the pairs list with the `i'th` item being the `id` of the `i'th` pair's entity, is required to add the scores back to the corresponding entity.
+
+Now to test your newly implemented module, import the `topkNew` method and use
+
+```python
+from TriMention.web import parse_mentions as mentionFiltering
+from ... import ... as DisambiguationBy...
+......
+from NewModule.applyNew import topkNew as DisambiguationByNew
+text = "A test text"
+entities = mentionFiltering(text)
+entities = DisambiguationBy...(text,entities,K=3)
+......
+entities = DisambiguationByNew(text,entities,K=3)
+print(entities[0])
 ```
 

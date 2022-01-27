@@ -13,7 +13,7 @@ import urllib
 # the first step of disambiguation might contains too much candidates, so we seperated them into different batches by mention
 
 def mention2entity(men):
-	url = "http://172.31.255.7:8982/mention/"
+	url = "http://localhost:8982/mention/"
 	data = rq.urlopen(url+urllib.parse.quote(men)).read()
 	return json.loads(data)
 def generatePairs(mentions):

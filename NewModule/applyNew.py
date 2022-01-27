@@ -9,33 +9,31 @@ device="cuda:0"
 
 
 model_location = os.path.join(os.path.dirname(__file__),"model")
-print("Loading Relation Model")
+print("Loading New Model")
 tokenizer = AutoTokenizer.from_pretrained(model_location,local_files_only=True,use_fast=True)
 model = AutoModelForMultipleChoice.from_pretrained(model_location,local_files_only=True).eval().to(device)
-print("Relation Model Loaded")
-def getRelations(bdi):
-	url = "http://localhost:8982/relation/"
-	data = rq.urlopen(url+urllib.parse.quote(bdi)).read()
-	return json.loads(data)["data"]
-	
+print("New Model Loaded")
+
 def generatePairs(entities):
-	mention_relation_pairs = []
+	mention_new_pairs = []
 	bdi_list = []
+	# TODO
 	for i in entities:
 		relations = getRelations(i[1])
 		for r in relations:
 			mention_relation_pairs.append(i[0]+"的"+r)
 			bdi_list.append(i[1])
-	return mention_relation_pairs,bdi_list
+	pass
+	return mention_new_pairs,bdi_list
 
 def tokenize(q,pairs):
 	qs = [q]*len(pairs)
 	tokenized = tokenizer(qs,pairs,padding=True,truncation=True,return_tensors="pt",max_length=128)
 	return {k:v.to(device) for k,v in tokenized.items()}
 
-def topkRelation(q,entities,K=3):
-	mention_relation_pairs,bdi_list = generatePairs(entities)
-	tokenized = tokenize(q,mention_relation_pairs)
+def topkNew(q,entities,K=3):
+	mention_new_pairs,bdi_list = generatePairs(entities)
+	tokenized = tokenize(q,mention_new_pairs)
 	
 	returned = model(**{k:v.unsqueeze(0) for k,v in tokenized.items()})
 	logits = returned.logits[0].cpu().detach().numpy()
@@ -46,7 +44,7 @@ def topkRelation(q,entities,K=3):
 		if len(entity_score[i]) > 0:
 			entity_score[i] = max(entity_score[i],key=lambda x:x[0])
 		else:
-			entity_score[i] = (0,"No Relation")		
+			entity_score[i] = (0,"No New")		
 	mentions = [(entities[i][0],entities[i][1],entity_score[entities[i][1]][0]+entities[i][2],entity_score[entities[i][1]][1]) for i in range(len(entities))]
 	mentions.sort(key=lambda x:x[2],reverse=True)
 	return mentions[:K]
