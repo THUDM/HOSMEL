@@ -22,7 +22,7 @@ We know some users might prefer to design their own entity disambiguation framew
 https://drive.google.com/drive/folders/1eh-dJnKWJulPuZGsORii4fPW-zCmWS5k?usp=sharing
 ````
 
-See [setups](#su) for more information.
+See [setups](#su) and [Usage of current Modules](#cm) for more information.
 
 ### Easy-to-Change
 
@@ -153,7 +153,37 @@ We release our training data [here](https://drive.google.com/file/d/17s6j2i93LDO
 
 Our test data is also available [here](https://drive.google.com/file/d/1A1ktpFtLGKGnZwFmVjsCWnVXzIPBDpMo/view?usp=sharing)
 
-## Training
+## Usage of current Module<span id="cm"/>
+
+It's simple to use our provided modules. After setting up, most modules have their method implemented in a `apply{$Module}.py` file. With a `topk{$Module}` method in it. This method is often formed with three parameters:
+
+| Parameter         | Usage                                                        |
+| ----------------- | ------------------------------------------------------------ |
+| q                 | The input text of the entity linking framework.              |
+| mentions/entities | The result output from the previous step.                    |
+| K                 | The top-K result for linking will be outputted for the current Module to the next. Default we set it to 3. |
+
+The mention filtering stage is different, because it is the first step of entity linking and the candidate entity before this set could be viewed as the entire domain, thus we deployed it separately in the `TriMention/mention.py` file. The usage is to import `parse_mentions` from `TriMention/web.py` and call
+
+```python
+from TriMention.web import parse_mentions
+mentions = parse_mentions(text)
+```
+
+Where `text` is the input text to the toolkit.
+
+Other modules goes after as 
+
+```python
+entities = topkMention(text,mentions,K=3)
+entities = topkSubtitle(text,entities,K=3)
+entities = topkRelation(text,entities,K=1)
+print(entities)
+```
+
+## Additional/New Module
+
+### Training
 
 To train a new module, simply move the training data to corresponding folder and use
 
@@ -169,7 +199,7 @@ python train.py
 
 The model's checkpoint should be saved in the `model` folder.
 
-## Usage after training new Module
+### Usage after training new Module
 
 Idealy, if you have selected your checkpoint and replaced the `model` folder with it, you don't need to change anything other than editing the `generatePairs` method. However, just in case, if you are interested to change model directory. In the `applyNew.py` folder, change
 
