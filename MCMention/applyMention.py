@@ -22,6 +22,3 @@ def topkMention(q,mentions,K=3):
 	mentions = [(mentions[i],logits[i]) for i in range(len(mentions))]
 	mentions.sort(key=lambda x:x[1],reverse=True)
 	return mentions[:K]
-
-def filterMention(mentionDetection,mentions):
-	return {k[0]:mentions[k[0]] for k in mentionDetection}

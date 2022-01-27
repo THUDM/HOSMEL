@@ -39,12 +39,12 @@ def get_from_model(mentions):
 		mentions[i] = {mentions[i]["ids"][j]:logits[j] for j in range(len(mentions[i]["ids"]))}
 	return mentions
 
-def topkSubTitle(string,mentionScores,K=3):
-	mentions = generatePairs(mentionScores)
-	tokenized = tokenize(string,mentions)
+def topkSubTitle(q,entities,K=3):
+	mentions = generatePairs(entities)
+	tokenized = tokenize(q,mentions)
 	scores = get_from_model(tokenized)
 
-	mention2scores = {i[0]:i[1] for i in mentionScores}
+	mention2scores = {i[0]:i[1] for i in entities}
 	for mention in scores:
 		scores[mention] = [[mention,k,v+mention2scores[mention]] for k,v in scores[mention].items()]
 	ret = sum(scores.values(),[])
