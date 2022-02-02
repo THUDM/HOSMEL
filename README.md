@@ -62,7 +62,7 @@ https://drive.google.com/file/d/1xKvPx0LY6XgVXY7wtSmUwk2iMfBm-9qw/view?usp=shari
 Our method requires a few python based dependencies:
 
 ```bash
-pip install flask torch tqdm pickle json pyahocorasick datasets
+pip install flask torch tqdm pyahocorasick datasets transformers
 ```
 
 Make sure you have all the dependencies installed to access all of our methods.
