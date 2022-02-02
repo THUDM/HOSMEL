@@ -1,7 +1,7 @@
 from flask import Flask
 from TriMention.web import parse_mentions
 from MCMention.applyMention import topkMention
-from MCSubtitle.applyMCSubtitle import topkSubTitle,topkSubTitleWithScores
+from MCSubtitle.applySubtitle import topkSubTitle,topkSubTitleWithScores
 from MCRelation.applyRelation import topkRelation
 
 import json
