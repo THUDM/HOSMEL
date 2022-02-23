@@ -34,7 +34,11 @@ def tokenize(q,pairs):
 	return {k:v.to(device) for k,v in tokenized.items()}
 
 def topkRelation(q,entities,K=3):
-	mention_relation_pairs,bdi_list = generatePairs(entities)
+	mention_relation_pairs,bdi_list = generatePairs(entities)]
+	if len(mention_relation_pairs) == 0:
+		mentions = [(entities[i][0],entities[i][1],entities[i][2]-10000,"No Relation") for i in range(len(entities))]
+		mentions.sort(key=lambda x:x[2],reverse=True)
+		return mentions[:K]
 	tokenized = tokenize(q,mention_relation_pairs)
 	
 	returned = model(**{k:v.unsqueeze(0) for k,v in tokenized.items()})
