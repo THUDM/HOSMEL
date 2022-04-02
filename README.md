@@ -44,7 +44,7 @@ Then reimplement the `generatePair` method in the `apply{feature}.py` file for i
 
 ## <span id="ld">Live Demonstration</span>
 
-We provided a live demonstration at http://60.205.221.159/el/
+We provided a live demonstration at https://www.aminer.cn/el
 
 ## Links to the model Checkpoints
 
@@ -230,5 +230,16 @@ entities = DisambiguationBy...(text,entities,K=3)
 ......
 entities = DisambiguationByNew(text,entities,K=3)
 print(entities[0])
+```
+
+## Citation
+If you found our project helpful please cite our paper 
+```latex
+@inproceedings{zhangli2022hosmel,
+  title={HOSMEL: A Hot-Swappable Modularized Entity Linking Toolkit for Chinese},
+  author={Zhang-Li, Daniel and Zhang, Jing and Yu, Jifan and Zhang, Xiaokang and Zhang, Peng and Tang, Jie and Li, Juanzi},
+  booktitle={Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics: System Demonstrations},
+  year={2022}
+}
 ```
 
