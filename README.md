@@ -42,10 +42,6 @@ To train your own module, we recommend to copy the `NewMudule` module, a templat
 
 Then reimplement the `generatePair` method in the `apply{feature}.py` file for infer.
 
-## <span id="ld">Live Demonstration</span>
-
-We provided a live demonstration at https://www.aminer.cn/el
-
 ## Links to the model Checkpoints
 
 ```apl
@@ -231,6 +227,11 @@ entities = DisambiguationBy...(text,entities,K=3)
 entities = DisambiguationByNew(text,entities,K=3)
 print(entities[0])
 ```
+
+
+## <span id="ld">Live Demonstration</span>
+
+We provided a live demonstration at https://www.aminer.cn/el
 
 ## Citation
 If you found our project helpful please cite our paper 
